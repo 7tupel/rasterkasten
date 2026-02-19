@@ -1,0 +1,6 @@
+{:paths     []
+ :deps      {org.clojure/clojure              {:mvn/version "1.12.0"}
+             ;; products
+             net.7tupel/rasterkasten          {:local/root "../rk"}
+
+             }}

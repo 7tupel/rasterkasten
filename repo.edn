@@ -1,0 +1,8 @@
+{:scm       {:type      :git
+             :trunk     "main"
+             :origin    "origin"
+             :url       "git@github.com:7tupel/rasterkasten.git"
+             :provider  {:name    :github 
+                         :repo    "rasterkasten",
+                         :owner   "7tupel"}}
+ :products  [{:root "rk" :version "0.0.0" :key :rk :release-prefix "rk" :type :library}]}
