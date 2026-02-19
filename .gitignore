@@ -1,0 +1,11 @@
+# git / repository
+worktrees/
+
+# Clojure
+.nrepl-port
+.cpcache
+.clj-kondo/
+.babashka/
+
+# Tools
+.lsp/
