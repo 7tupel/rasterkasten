@@ -51,7 +51,7 @@
 
 ;;;; Implementation
 
-(defn snap-width
+(defn- snap-width
   "Calculate the snap with.
    If `variant` is `:loose` then the snap width is slightly smaller to
    allow easy removal of the box from the grid."
@@ -61,7 +61,7 @@
     (- tile grid-taper-height grid-taper-height)))
 
 
-(defn single-snap-grid-tile
+(defn- single-snap-grid-tile
   "A single snapgrid tile."
   []
   (difference
@@ -90,7 +90,7 @@
       (range rows))))
 
 
-(defn box-height
+(defn- box-height
   "Calculate the height of the box.
    This will return the height of the box without(!) the bottom taper and
    snap."
@@ -105,7 +105,7 @@
     full-height))
 
 
-(defn box-body
+(defn- box-body
   "The body of the box with four rounded edges.
    Takes the outside `x`, `y` and `z` size of the box and the
    corner radius `r`."
@@ -122,7 +122,7 @@
         (cylinder r z :center false)))))
 
 
-(defn box-snap
+(defn- box-snap
   "Create the snap of the box.
    The snap is the bottom part that fits into the snap.
    Takes the square width `w` and the height `h` of the snap as well as the
@@ -131,7 +131,7 @@
   (box-body w w h r))
 
 
-(defn box-taper
+(defn- box-taper
   "The bottom taper of the box.
    Creates the bottom taper of a box with the given width `w` and height `h` and
    the radius `r` for a smooth transition of the rounded box body to the taper."
@@ -156,7 +156,7 @@
             (corner-cutter r w)))))))
 
 
-(defn box-hull
+(defn- box-hull
   "Takes
    - `rows` - the row size of the box
    - `cols` - the column size of the box
@@ -191,7 +191,7 @@
                   (box-snap s-h grid-snap-height r))))))))
 
 
-(defn box
+(defn- box
   [rows cols h snap]
   (let [body-height         (box-height h)
         body-x              (* rows tile)
@@ -287,28 +287,28 @@
      :opts {}})
   )
 
-(defn divider-height
+(defn- divider-height
   "Calculate the height of a divider.
    Takes the height `h` of the box as keyword."
   [h]
   (- (box-height h) grid-height))
 
 
-(defn vertical-divider
+(defn- vertical-divider
   [h]
   (let [height (divider-height h)]
     (translate [0 0 grid-height] 
       (cube wall tile height :center false))))
 
 
-(defn horizontal-divider
+(defn- horizontal-divider
   [h]
   (let [height (divider-height h)]
     (translate [0 0 grid-height] 
       (cube tile wall height :center false))))
 
 
-(defn col-count
+(defn- col-count
   [b-spec]
   (int (ceil (/ (count b-spec) 2))))
 
@@ -321,12 +321,12 @@
   )
 
 
-(defn at-least-1
+(defn- at-least-1
   [i]
   (if (< i 1) 1 i))
 
 
-(defn row-count
+(defn- row-count
   [b-spec]
   (at-least-1 (int (ceil (/ (count (first b-spec)) 2)))))
 
@@ -339,7 +339,7 @@
   )
 
 
-(defn get-spec-h-dividers
+(defn- get-spec-h-dividers
   [spec]
   (take-nth 2 (rest spec)))
 
@@ -353,7 +353,7 @@
   )
 
 
-(defn get-spec-v-dividers
+(defn- get-spec-v-dividers
   [spec]
   (->> (take-nth 2 spec)
     (mapv (fn [v] (into [] (filter symbol? v))))))
@@ -368,7 +368,7 @@
   )
 
 
-(defn with-vertical-dividers
+(defn- with-vertical-dividers
   [model spec height]
   (let [v-dividers  (get-spec-v-dividers (reverse spec))]
     (union
@@ -386,7 +386,7 @@
         v-dividers))))
 
 
-(defn with-horizontal-dividers
+(defn- with-horizontal-dividers
   [model spec height]
   (let [h-dividers  (reverse (get-spec-h-dividers spec))]
     (union
@@ -404,7 +404,7 @@
         h-dividers))))
 
 
-(defn box!
+(defn generate-box
   [{:keys [spec opts]}]
   (let [rows    (row-count spec)
         cols    (col-count spec)
