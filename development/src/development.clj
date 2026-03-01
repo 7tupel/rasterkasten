@@ -54,4 +54,25 @@
         
       ;; Build a 3x3 grid
       ; (snapgrid 3 3)  
+      
+      ;; render a giant box. should onlu be used for debugging box scaling
+      ;; because rendering on openscad takes very long and usual 3d printers
+      ;; would no bew able to print this anyways
+      (box!
+        {:spec '(
+                 [[] _ [] _ [] _ [] _ [] _ [] _ []]
+                 [_    _    _    _    _    _    _ ]
+                 [[] _ [] _ [] _ [] _ [] _ [] _ []]
+                 [_    _    _    _    _    _    _ ]
+                 [[] _ [] _ [] _ [] _ [] _ [] _ []]
+                 [_    _    _    _    _    _    _ ]
+                 [[] _ [] _ [] _ [] _ [] _ [] _ []]
+                 [_    _    _    _    _    _    _ ]
+                 [[] _ [] _ [] _ [] _ [] _ [] _ []]
+                 [_    _    _    _    _    _    _ ]
+                 [[] _ [] _ [] _ [] _ [] _ [] _ []]
+                 )
+         :opts {:height :half
+                :fit :loose}})
+      
       )))

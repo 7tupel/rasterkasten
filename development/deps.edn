@@ -4,7 +4,7 @@
              io.github.tonsky/clj-reload      {:mvn/version "0.9.6"}
              io.github.noahtheduke/lazytest   {:mvn/version "1.8.0"}
              ;; products
-             net.7tupel/rasterkasten          {:local/root "../rk"}
+             net.7tupel/rasterkasten          {:local/root "../rasterkasten"}
              ;; temporary
              ; ...
              }
