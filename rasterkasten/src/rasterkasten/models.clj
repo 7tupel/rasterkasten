@@ -199,7 +199,7 @@
         corner-radius       box-corner-radius
         snap-width          (snap-width snap)
         snap-cutout-width   (- snap-width wall wall)
-        snap-cutout-offset  (+ snap-cutout-width wall wall grid-taper-height grid-taper-height)
+        snap-cutout-offset  tile
         text-size           10]
   (difference
     ;; the positive box
@@ -413,4 +413,3 @@
     (-> (box rows cols height fit)
       (with-horizontal-dividers spec height)
       (with-vertical-dividers spec height))))
-
