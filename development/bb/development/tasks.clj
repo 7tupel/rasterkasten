@@ -12,3 +12,7 @@
   (wrap-process
     "clj -M:nREPL -m nrepl.cmdline --middleware \"[clj-commons.pretty.nrepl/wrap-pretty]\""
     {}))
+
+(defn development
+  [_]
+  (nrepl nil))

@@ -1,7 +1,7 @@
 (ns development
   (:require
    [scad-clj.model :refer [with-fn]]
-   [rasterkasten.models :refer [box! snapgrid]]
+   [rasterkasten.models :refer [generate-box snapgrid]]
    [rasterkasten.render :refer [render*]]))
 
 
@@ -18,7 +18,7 @@
     
       ;; Build a 3x3 half height box with some creative dividers
       ;; The box uses a loose fitting snap for the grid
-      ; (box!
+      ; (generate-box
       ;   {:spec '(
       ;            [[] | [] _ []]
       ;            [ =   _    _ ]
@@ -29,9 +29,21 @@
       ;    :opts {:height :half
       ;           :fit :loose}})
       
+      ;; Another wild example for dividers
+      ; (generate-box
+      ;   {:spec '(
+      ;            [[] | [] | []]
+      ;            [ =   _    = ]
+      ;            [[] _ [] _ []]
+      ;            [ =   _    _ ]
+      ;            [[] | [] _ []]
+      ;            )
+      ;    :opts {:height :half
+      ;           :fit :loose}})
+      
       ;; Build a 2x2 box with full height and snaps fitting tightly into the grid
       ;; Also add one vertical divider over the full with of the box
-      ; (box!
+      ; (generate-box
       ;   {:spec '(
       ;            [[] _ []]
       ;            [=    = ]
@@ -41,7 +53,7 @@
       ;           :fit :tight}})
       
       ;; Build a 2x3 box with no dividers, half height and loose fit
-      ; (box!
+      ; (generate-box
       ;   {:spec '(
       ;            [[] _ []]
       ;            [_    _ ]
@@ -58,21 +70,34 @@
       ;; render a giant box. should onlu be used for debugging box scaling
       ;; because rendering on openscad takes very long and usual 3d printers
       ;; would no bew able to print this anyways
-      (box!
+      ; (generate-box
+      ;   {:spec '(
+      ;            [[] _ [] _ [] _ [] _ [] _ [] _ []]
+      ;            [_    _    _    _    _    _    _ ]
+      ;            [[] _ [] _ [] _ [] _ [] _ [] _ []]
+      ;            [_    _    _    _    _    _    _ ]
+      ;            [[] _ [] _ [] _ [] _ [] _ [] _ []]
+      ;            [_    _    _    _    _    _    _ ]
+      ;            [[] _ [] _ [] _ [] _ [] _ [] _ []]
+      ;            [_    _    _    _    _    _    _ ]
+      ;            [[] _ [] _ [] _ [] _ [] _ [] _ []]
+      ;            [_    _    _    _    _    _    _ ]
+      ;            [[] _ [] _ [] _ [] _ [] _ [] _ []]
+      ;            )
+      ;    :opts {:height :half
+      ;           :fit :loose}})
+      
+      (generate-box
         {:spec '(
-                 [[] _ [] _ [] _ [] _ [] _ [] _ []]
-                 [_    _    _    _    _    _    _ ]
-                 [[] _ [] _ [] _ [] _ [] _ [] _ []]
-                 [_    _    _    _    _    _    _ ]
-                 [[] _ [] _ [] _ [] _ [] _ [] _ []]
-                 [_    _    _    _    _    _    _ ]
-                 [[] _ [] _ [] _ [] _ [] _ [] _ []]
-                 [_    _    _    _    _    _    _ ]
-                 [[] _ [] _ [] _ [] _ [] _ [] _ []]
-                 [_    _    _    _    _    _    _ ]
-                 [[] _ [] _ [] _ [] _ [] _ [] _ []]
+                 [[] _ [] _ []]
+                 [ _   _    _ ]
+                 [[] _ [] _ []]
+                 [ _   _    _ ]
+                 [[] _ [] _ []]
+                 [ _   _    _ ]
+                 [[] _ [] _ []]
                  )
-         :opts {:height :half
+         :opts {:height :quarter
                 :fit :loose}})
       
       )))
